@@ -1,0 +1,36 @@
+  apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  metadata:
+    annotations:
+      appgw.ingress.kubernetes.io/backend-path-prefix: /
+      kubectl.kubernetes.io/last-applied-configuration: "{\"apiVersion\":\"networking.k8s.io/v1\",\"kind\":\"Ingress\",\"metadata\":{\"annotations\":{\"kubernetes.io/ingress.class\":\"nginx\"},\"name\":\"example\",\"namespace\":\"default\"},\"spec\":{\"rules\":[{\"http\":{\"paths\":[{\"backend\":{\"service\":{\"name\":\"jensvc\",\"port\":{\"number\":443}}},\"path\":\"/jenkins\",\"pathType\":\"Prefix\"}]}}]}}\n
+        \n"
+
+    creationTimestamp: "2022-12-05T17:16:55Z"
+    generation: 40
+    name: example
+    namespace: default
+    resourceVersion: "22460801"
+    uid: 67b6a03d-eddf-461a-95cd-d7cbf997a4ac
+  spec:
+    rules:
+    - http:
+        paths:
+        - backend:
+            service:
+              name: nginxsvc
+              port:
+                number: 80
+          path: /
+          pathType: Prefix
+        - backend:
+            service:
+              name: svctest
+              port:
+                number: 443
+          path: /home
+          pathType: Prefix
+  status:
+    loadBalancer:
+      ingress:
+      - ip: 20.200.90.137

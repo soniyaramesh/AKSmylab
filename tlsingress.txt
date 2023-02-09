@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tls-example-ingress
+  annotations:
+      appgw.ingress.kubernetes.io/backend-path-prefix: /
+      kubernetes.io/ingress.class: azure/application-gateway
+      cert-manager.io/cluster-issuer: letsencrypt-staging
+      kubernetes.io/tls-acme: "true"
+      acme.cert-manager.io/http01-edit-in-place: "true"
+spec:
+  tls:
+  - hosts:
+      - myakssoni.canadacentral.cloudapp.azure.com
+    secretName: sampletls-test
+  rules:
+  - host: myakssoni.canadacentral.cloudapp.azure.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginxsvc
+            port:
+              number: 80
