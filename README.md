@@ -6,6 +6,8 @@
 5. Create ingress with cluster issuer details 
 6 Check the status of Tls certificates and cluster issuer, once it becomes true. You can access the application using the https://url
 
+Reference: https://learn.microsoft.com/en-us/azure/aks/ingress-tls?tabs=azure-cli#use-tls-with-lets-encrypt-certificates
+
 
 
 
